@@ -44,7 +44,8 @@ extends:
             nodeVersions:
               - 16.14.2
         testSteps:
-          #- checkout: vscode
+          - checkout: vscode
+          - checkout: self
           - script: dir $(Build.SourcesDirectory)
         buildSteps:
           - script: dir $(Build.SourcesDirectory)
