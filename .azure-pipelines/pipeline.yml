@@ -37,20 +37,27 @@ extends:
           - name: Linux
             nodeVersions:
               - 16.14.2
-          - name: MacOS
-            nodeVersions:
-              - 16.14.2
-          - name: Windows
-            nodeVersions:
-              - 16.14.2
+          #- name: MacOS
+          #  nodeVersions:
+          #    - 16.14.2
+          #- name: Windows
+          #  nodeVersions:
+          #    - 16.14.2
         testSteps:
-          - checkout: vscode
           - checkout: self
+          - checkout: vscode
+          - script: git checkout 083a5955b30c426bc4ba5e6aa396f4af48c64b1c
+            workingDirectory: vscode
+          - script: git status
+            workingDirectory: vscode
+
           - script: dir $(Build.SourcesDirectory)
         buildSteps:
           - script: dir $(Build.SourcesDirectory)
+
         tag: ${{ parameters.quality }}
         publishPackage: false
         postPublishSteps:
           - script: dir .
+
         workingDirectory: $(Build.SourcesDirectory)
